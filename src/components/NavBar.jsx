@@ -2,40 +2,28 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav className="bg-slate-600 text-white text-xl flex justify-between">
+    <nav className="text-white text-xl flex justify-between bg-customGray font-title overflow-clip">
       <ul className="flex space-x-12 ml-40">
-        <li className="">
-          <Link className="" to="/">
-            Micro Memories
-          </Link>
-        </li>
-        <li>
-          <Link className="" to="/about">
-            About
-          </Link>
-        </li>
-        <li>
-          <Link className="" to="/contact">
-            Contact
-          </Link>
-        </li>
-        <li>
-          <Link className="" to="/demo">
-            Demo
-          </Link>
-        </li>
+        <Link className="" to="/">
+          <li className="">Micro Memories</li>
+        </Link>
+        <Link className="" to="/about">
+          <li>About</li>
+        </Link>
+        <Link className="" to="/contact">
+          <li>Contact</li>
+        </Link>
+        <Link className="" to="/demo">
+          <li>Demo</li>
+        </Link>
       </ul>
-      <ul className="bg-slate-500 flex space-x-4 mr-12">
-        <li>
-          <Link className="" to="/signup">
-            Sign up
-          </Link>
-        </li>
-        <li>
-          <Link className="" to="/login">
-            Log in
-          </Link>
-        </li>
+      <ul className="bg-slate-600 flex space-x-4 mr-12">
+        <Link className="" to="/signup">
+          <li className="">Sign up</li>
+        </Link>
+        <Link className="" to="/login">
+          <li>Log in</li>
+        </Link>
       </ul>
     </nav>
   );

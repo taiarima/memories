@@ -2,10 +2,14 @@ import NavBar from "../components/NavBar";
 
 function Home() {
   return (
-    <div>
+    <>
       <NavBar />
-      <h1>Home Page</h1>
-    </div>
+      <div className="h-48 m-20 rounded-lg flex flex-col justify-center font-title">
+        <h1 className="text-center text-6xl text-customCream">
+          Never forget the memories that matter.
+        </h1>
+      </div>
+    </>
   );
 }
 

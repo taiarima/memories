@@ -1,10 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=ADLaM+Display&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 nav li {
   padding: 15px;
 }
 nav li:hover {
   background-color: #413d3d;
+}
+
+html {
+  background-image: url("assets/background.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* This ensures the background stays fixed even when scrolling */
 }
