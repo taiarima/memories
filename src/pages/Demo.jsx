@@ -1,6 +1,5 @@
 import NavBar from "../components/NavBar";
 
-
 function Demo() {
   return (
     <div>

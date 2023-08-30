@@ -1,25 +1,28 @@
+import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Demo from "./pages/Demo";
-// import NavBar from "./components/NavBar";
-import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login";
+
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Demo = lazy(() => import("./pages/Demo"));
+const Home = lazy(() => import("./pages/Home"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const Login = lazy(() => import("./pages/Login"));
 
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route index path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="demo" element={<Demo />} />
-          <Route path="signup" element={<SignUp />} />
-          <Route path="login" element={<Login />} />
-        </Routes>
+        <Suspense fallback={Home}>
+          <Routes>
+            <Route index path="/" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="demo" element={<Demo />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="login" element={<Login />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </>
   );
