@@ -1,7 +1,11 @@
 import Memory from "../components/Memory";
 import NavBar from "../components/NavBar";
+import AddMemModal from "../components/AddMemModal";
+import { useState } from "react";
 
 function Demo() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const demoData = [
     {
       id: 1,
@@ -113,7 +117,9 @@ function Demo() {
       <h1 className="font-title text-white text-6xl text-center m-8">
         Demo Page
       </h1>
-      <div className="flex flex-wrap m-4 justify-center">
+      <button onClick={() => setIsModalOpen(true)}>Open Modal</button>
+      {isModalOpen && <AddMemModal />}
+      <div className="flex flex-wrap m-4 justify-center bg-customRed bg-opacity-70">
         {demoData.map((memory) => (
           <Memory memory={memory} key={memory.id} />
         ))}
