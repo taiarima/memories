@@ -8,12 +8,11 @@ const Home = lazy(() => import("./pages/Home"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const Login = lazy(() => import("./pages/Login"));
 
-
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Suspense fallback={Home}>
+        <Suspense fallback={<Home />}>
           <Routes>
             <Route index path="/" element={<Home />} />
             <Route path="about" element={<About />} />

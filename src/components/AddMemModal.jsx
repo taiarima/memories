@@ -26,7 +26,7 @@ const categories = [
   "🗣️ Socializing",
 ];
 
-function AddMemModal() {
+function AddMemModal({ closeModal }) {
   const [text, setText] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [date, setDate] = useState(new Date().toISOString().substr(0, 10));
@@ -37,13 +37,28 @@ function AddMemModal() {
     }
   };
 
+  const handleBackgroundClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+
+  const handleSubmit = () => {
+    // Your submit logic here
+    closeModal();
+  };
+
   return (
-    <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black">
+    <div
+      className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black"
+      onClick={handleBackgroundClick}
+    >
       <div className="bg-white p-8 rounded-lg w-1/3">
+        <button onClick={closeModal}>Close</button>
         <h1 className="text-2xl mb-4">Add Memory</h1>
 
         <textarea
-          className="w-full p-2 border rounded mb-4"
+          className="w-full p-2 border rounded mb-4 resize-none"
           placeholder="Write here..."
           value={text}
           onChange={handleTextChange}
@@ -69,7 +84,12 @@ function AddMemModal() {
           onChange={(e) => setDate(e.target.value)}
         />
 
-        <button className="bg-blue-500 text-white p-2 rounded">Submit</button>
+        <button
+          className="bg-blue-500 text-white p-2 rounded"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );

@@ -111,19 +111,28 @@ function Demo() {
     },
   ];
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="">
       <NavBar />
       <h1 className="font-title text-white text-6xl text-center m-8">
         Demo Page
       </h1>
-      <button onClick={() => setIsModalOpen(true)}>Open Modal</button>
-      {isModalOpen && <AddMemModal />}
-      <div className="flex flex-wrap m-4 justify-center bg-customRed bg-opacity-70">
+      <div className="relative flex flex-wrap m-4 justify-center bg-customRed bg-opacity-70">
+        <button
+          className="transform -translate-y-full bg-blue-500 text-white p-2 rounded absolute"
+          onClick={() => setIsModalOpen(true)}
+        >
+          Add Memory
+        </button>
         {demoData.map((memory) => (
           <Memory memory={memory} key={memory.id} />
         ))}
       </div>
+      {isModalOpen && <AddMemModal closeModal={closeModal} />}
     </div>
   );
 }
