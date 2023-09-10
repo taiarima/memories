@@ -26,7 +26,7 @@ const categories = [
   "🗣️ Socializing",
 ];
 
-function AddMemModal({ closeModal }) {
+function AddMemModal({ closeModal, handleAddMemory }) {
   const [text, setText] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [date, setDate] = useState(new Date().toISOString().substr(0, 10));
@@ -45,6 +45,14 @@ function AddMemModal({ closeModal }) {
 
   const handleSubmit = () => {
     // Your submit logic here
+    const newMemory = {
+      categoryEmoji: category,
+      entryText: text,
+      date: date,
+    };
+    handleAddMemory(newMemory);
+    console.log("Submitting new memory");
+    // show memory saved message
     closeModal();
   };
 

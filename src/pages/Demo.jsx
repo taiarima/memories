@@ -111,28 +111,38 @@ function Demo() {
     },
   ];
 
+  const [demoEntries, setDemoEntries] = useState(demoData);
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
+  function handleAddMemory(memory) {
+    memory.id = demoEntries.length + 1;
+    setDemoEntries((entries) => [...entries, memory]);
+  }
+
   return (
     <div className="">
       <NavBar />
-      <h1 className="font-title text-white text-6xl text-center m-8">
-        Demo Page
-      </h1>
+      <h1 className="font-title text-white text-6xl text-center m-8">Demo</h1>
       <div className="relative flex flex-wrap m-4 justify-center bg-customRed bg-opacity-70">
         <button
           className="transform -translate-y-full bg-blue-500 text-white p-2 rounded absolute"
           onClick={() => setIsModalOpen(true)}
         >
-          Add Memory
+          Add Entry
         </button>
-        {demoData.map((memory) => (
+        {demoEntries.map((memory) => (
           <Memory memory={memory} key={memory.id} />
         ))}
       </div>
-      {isModalOpen && <AddMemModal closeModal={closeModal} />}
+      {isModalOpen && (
+        <AddMemModal
+          handleAddMemory={handleAddMemory}
+          closeModal={closeModal}
+        />
+      )}
     </div>
   );
 }

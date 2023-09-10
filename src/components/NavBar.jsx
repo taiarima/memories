@@ -5,7 +5,7 @@ function NavBar() {
     <nav className="text-white text-xl flex justify-between bg-customGray font-title overflow-clip">
       <ul className="flex space-x-12 ml-40">
         <Link className="" to="/">
-          <li className="">Micro Memories</li>
+          <li className="">Nano Journal</li>
         </Link>
         <Link className="" to="/about">
           <li>About</li>
