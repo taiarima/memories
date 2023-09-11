@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "./Button";
 
 const categories = [
   "🏋️ Fitness",
@@ -61,8 +62,16 @@ function AddMemModal({ closeModal, handleAddMemory }) {
       className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black"
       onClick={handleBackgroundClick}
     >
-      <div className="bg-white p-8 rounded-lg w-1/3">
-        <button onClick={closeModal}>Close</button>
+      <div className="bg-white p-8 rounded-lg">
+        <div className="relative">
+          <button
+            onClick={closeModal}
+            className="text-2xl absolute right-0 -mt-4"
+          >
+            &times;
+          </button>
+        </div>
+
         <h1 className="text-2xl mb-4">Add Memory</h1>
 
         <textarea
@@ -92,12 +101,15 @@ function AddMemModal({ closeModal, handleAddMemory }) {
           onChange={(e) => setDate(e.target.value)}
         />
 
-        <button
+        {/* <button
           className="bg-blue-500 text-white p-2 rounded"
           onClick={handleSubmit}
         >
           Submit
-        </button>
+        </button> */}
+        <div className="flex justify-center">
+          <Button onclick={handleSubmit}>Submit</Button>
+        </div>
       </div>
     </div>
   );

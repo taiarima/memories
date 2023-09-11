@@ -1,6 +1,7 @@
 import Memory from "../components/Memory";
 import NavBar from "../components/NavBar";
 import AddMemModal from "../components/AddMemModal";
+import Button from "../components/Button";
 import { useState } from "react";
 
 function Demo() {
@@ -126,13 +127,18 @@ function Demo() {
     <div className="">
       <NavBar />
       <h1 className="font-title text-white text-6xl text-center m-8">Demo</h1>
-      <div className="relative flex flex-wrap m-4 justify-center bg-customRed bg-opacity-70">
-        <button
-          className="transform -translate-y-full bg-blue-500 text-white p-2 rounded absolute"
+      <div className="flex justify-start m-4">
+        {/* <button
+          className="bg-blue-500 text-white p-2 mx-4 rounded"
           onClick={() => setIsModalOpen(true)}
         >
           Add Entry
-        </button>
+        </button> */}
+        <div className="mx-4">
+          <Button onClick={() => setIsModalOpen(true)}>Add Entry</Button>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 m-4 bg-customRed bg-opacity-70">
         {demoEntries.map((memory) => (
           <Memory memory={memory} key={memory.id} />
         ))}
