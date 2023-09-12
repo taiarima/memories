@@ -45,9 +45,9 @@ function AddMemModal({ closeModal, handleAddMemory }) {
   };
 
   const handleSubmit = () => {
-    // Your submit logic here
+    console.log(category.toString().type);
     const newMemory = {
-      categoryEmoji: category,
+      categoryEmoji: String.fromCodePoint(category.codePointAt(0)),
       entryText: text,
       date: date,
     };
@@ -59,30 +59,30 @@ function AddMemModal({ closeModal, handleAddMemory }) {
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 bg-black"
+      className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50"
       onClick={handleBackgroundClick}
     >
-      <div className="bg-white p-8 rounded-lg">
+      <div className="rounded-lg bg-white p-8">
         <div className="relative">
           <button
             onClick={closeModal}
-            className="text-2xl absolute right-0 -mt-4"
+            className="absolute right-0 -mt-4 text-2xl"
           >
             &times;
           </button>
         </div>
 
-        <h1 className="text-2xl mb-4">Add Memory</h1>
+        <h1 className="mb-4 text-2xl">Add Memory</h1>
 
         <textarea
-          className="w-full p-2 border rounded mb-4 resize-none"
+          className="mb-4 w-full resize-none rounded border p-2"
           placeholder="Write here..."
           value={text}
           onChange={handleTextChange}
         />
 
         <select
-          className="w-full p-2 border rounded mb-4"
+          className="mb-4 w-full rounded border p-2"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
@@ -95,7 +95,7 @@ function AddMemModal({ closeModal, handleAddMemory }) {
 
         <input
           type="date"
-          className="w-full p-2 border rounded mb-4"
+          className="mb-4 w-full rounded border p-2"
           value={date}
           max={new Date().toISOString().substr(0, 10)}
           onChange={(e) => setDate(e.target.value)}
@@ -108,7 +108,7 @@ function AddMemModal({ closeModal, handleAddMemory }) {
           Submit
         </button> */}
         <div className="flex justify-center">
-          <Button onclick={handleSubmit}>Submit</Button>
+          <Button onClick={handleSubmit}>Submit</Button>
         </div>
       </div>
     </div>

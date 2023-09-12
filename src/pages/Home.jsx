@@ -4,9 +4,9 @@ function Home() {
   return (
     <>
       <NavBar />
-      <div className="h-48 m-20 rounded-lg flex flex-col justify-center font-title">
+      <div className="m-20 flex h-48 flex-col justify-center rounded-lg font-title">
         <h1 className="text-center text-6xl text-customCream">
-          Never forget the memories that matter.
+          Keep your journal, one memory at a time.
         </h1>
       </div>
     </>

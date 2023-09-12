@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
-    <nav className="text-white text-xl flex justify-between bg-customGray font-title overflow-clip">
-      <ul className="flex space-x-12 ml-40">
+    <nav className="flex justify-between overflow-clip bg-customGray font-title text-xl text-white">
+      <ul className="ml-40 flex space-x-12">
         <Link className="" to="/">
           <li className="">Nano Journal</li>
         </Link>
@@ -17,7 +17,7 @@ function NavBar() {
           <li>Demo</li>
         </Link>
       </ul>
-      <ul className="bg-slate-600 flex space-x-4 mr-12">
+      <ul className="mr-12 flex space-x-4 bg-slate-600">
         <Link className="" to="/signup">
           <li className="">Sign up</li>
         </Link>

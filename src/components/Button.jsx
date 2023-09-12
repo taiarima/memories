@@ -19,7 +19,7 @@ const Button = ({ children, onClick, type = "primary" }) => {
 
   return (
     <button
-      className={`py-2 px-4 rounded w-48 h-14 ${buttonStyle} font-title text-2xl border border-white`}
+      className={`h-14 w-48 rounded px-4 py-2 ${buttonStyle} border border-white font-title text-2xl`}
       onClick={onClick}
     >
       {children}
