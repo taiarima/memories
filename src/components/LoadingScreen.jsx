@@ -1,6 +1,6 @@
 export default function LoadingScreen() {
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-[90vh] items-center justify-center overflow-hidden">
       <div
         style={{
           borderTopColor: "#3498db",

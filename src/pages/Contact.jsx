@@ -1,10 +1,8 @@
-import NavBar from "../components/NavBar";
 import Button from "../components/Button";
 
 function Contact() {
   return (
     <div>
-      <NavBar />
       <div name="contact" className="w-full p-4 pt-40 text-white">
         <div className="mx-auto flex h-full max-w-screen-lg flex-col justify-center p-4">
           <div className="pb-8">

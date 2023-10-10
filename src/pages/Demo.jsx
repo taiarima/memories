@@ -1,5 +1,4 @@
 import Memory from "../components/Memory";
-import NavBar from "../components/NavBar";
 import AddMemModal from "../components/AddMemModal";
 import Button from "../components/Button";
 import { useState } from "react";
@@ -125,7 +124,6 @@ function Demo() {
 
   return (
     <div className="">
-      <NavBar />
       <h1 className="m-8 text-center font-title text-6xl text-white">Demo</h1>
       <div className="m-4 flex justify-start">
         {/* <button
