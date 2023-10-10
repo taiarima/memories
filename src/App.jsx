@@ -1,5 +1,7 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoadingScreen from "./components/LoadingScreen";
+
 
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -12,7 +14,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Suspense fallback={<Home />}>
+        <Suspense fallback={<LoadingScreen />}>
           <Routes>
             <Route index path="/" element={<Home />} />
             <Route path="about" element={<About />} />
