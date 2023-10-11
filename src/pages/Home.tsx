@@ -1,9 +1,8 @@
-
-function Home() {
+export default function Home() {
   return (
     <>
-      <div className="flex flex-col justify-center rounded-lg font-title">
-        <h1 className="mt-48 text-center text-6xl text-customCream">
+      <div className="flex flex-col justify-center rounded-lg bg-customRed/70 font-title">
+        <h1 className="mt-48 bg-customRed/70 text-center text-6xl text-customCream">
           Keep your journal, one memory at a time.
         </h1>
         <div className="m-16 text-center font-title text-white">
@@ -14,7 +13,7 @@ function Home() {
               write about
             </li>
             <li>
-              &#x2022; Keep your journal private or share it with friends and
+              &#x2022; Keep your journal private or share with friends and
               family
             </li>
             <li>
@@ -27,5 +26,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;

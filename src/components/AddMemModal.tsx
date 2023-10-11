@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "./Button";
+import { PropTypes } from "prop-types";
 
 const categories = [
   "🏋️ Fitness",
@@ -26,6 +27,11 @@ const categories = [
   "🙏 Gratitude",
   "🗣️ Socializing",
 ];
+
+AddMemModal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  handleAddMemory: PropTypes.func.isRequired,
+};
 
 function AddMemModal({ closeModal, handleAddMemory }) {
   const [text, setText] = useState("");

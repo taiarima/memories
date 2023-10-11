@@ -1,6 +1,12 @@
-import React from "react";
+import PropTypes from "prop-types";
 
-const Button = ({ children, onClick, type = "primary" }) => {
+Button.propTypes = {
+  children: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  type: PropTypes.string,
+};
+
+export default function Button({ children, onClick, type = "primary" }) {
   let buttonStyle = "";
 
   switch (type) {
@@ -25,6 +31,4 @@ const Button = ({ children, onClick, type = "primary" }) => {
       {children}
     </button>
   );
-};
-
-export default Button;
+}

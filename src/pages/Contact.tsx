@@ -1,11 +1,11 @@
 import Button from "../components/Button";
 
-function Contact() {
+export default function Contact() {
   return (
     <div>
-      <div name="contact" className="w-full p-4 pt-40 text-white">
+      <div name="contact" className="w-full p-4 pt-20 text-white">
         <div className="mx-auto flex h-full max-w-screen-lg flex-col justify-center p-4">
-          <div className="pb-8">
+          <div className="flex flex-col items-center pb-8">
             <p className="inline border-b-4 border-gray-500 text-4xl font-bold">
               Contact
             </p>
@@ -13,7 +13,7 @@ function Contact() {
               Fill out the form below to ask questions or receive support
             </p>
           </div>
-          <div className="flex items-center justify-center ">
+          <div className="flex items-center justify-center">
             <form
               className="flex w-full flex-col md:w-1/2"
               action=""
@@ -47,5 +47,3 @@ function Contact() {
     </div>
   );
 }
-
-export default Contact;
