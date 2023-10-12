@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function LoadingScreen() {
   return (
     <div className="flex h-[90vh] items-center justify-center overflow-hidden">

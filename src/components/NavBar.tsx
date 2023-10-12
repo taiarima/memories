@@ -1,6 +1,7 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
-function NavBar() {
+export default function NavBar() {
   return (
     <nav className="flex justify-between overflow-clip bg-customGray font-title text-xl text-white">
       <ul className="ml-40 flex space-x-12">
@@ -28,5 +29,3 @@ function NavBar() {
     </nav>
   );
 }
-
-export default NavBar;

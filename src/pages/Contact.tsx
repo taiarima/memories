@@ -1,9 +1,10 @@
+import React from "react";
 import Button from "../components/Button";
 
 export default function Contact() {
   return (
     <div>
-      <div name="contact" className="w-full p-4 pt-20 text-white">
+      <div className="w-full p-4 pt-20 text-white">
         <div className="mx-auto flex h-full max-w-screen-lg flex-col justify-center p-4">
           <div className="flex flex-col items-center pb-8">
             <p className="inline border-b-4 border-gray-500 text-4xl font-bold">
@@ -38,7 +39,7 @@ export default function Contact() {
                 className="my-2 rounded-md border-2 bg-customTeal p-2 font-bold text-black placeholder:text-slate-600 focus:outline-none"
               ></textarea>
               <div className="text-center">
-                <Button>Submit</Button>
+                <Button onClick={() => "nothing"}>Submit</Button>
               </div>
             </form>
           </div>

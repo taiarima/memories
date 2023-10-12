@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "../components/Button";
 
 export default function Login() {
@@ -15,7 +16,7 @@ export default function Login() {
         </span>
       </div>
       <div className="p-4 text-center">
-        <Button>Log in</Button>
+        <Button onClick={() => "nothing"}>Log in</Button>
       </div>
     </form>
   );

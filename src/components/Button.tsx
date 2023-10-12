@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
+import React from "react";
 
-Button.propTypes = {
-  children: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  type: PropTypes.string,
+type Props = {
+  children: string;
+  onClick: () => void;
+  type?: string;
 };
 
-export default function Button({ children, onClick, type = "primary" }) {
+export default function Button({ children, onClick, type = "primary" }: Props) {
   let buttonStyle = "";
 
   switch (type) {

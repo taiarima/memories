@@ -1,3 +1,4 @@
+import React from "react";
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoadingScreen from "./components/LoadingScreen";

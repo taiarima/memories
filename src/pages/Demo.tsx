@@ -1,3 +1,4 @@
+import React from "react";
 import Memory from "../components/Memory";
 import AddMemModal from "../components/AddMemModal";
 import Button from "../components/Button";
@@ -123,7 +124,7 @@ function Demo() {
   }
 
   return (
-    <div className="">
+    <div className="mx-auto max-w-[1300px] text-center">
       <h1 className="m-8 text-center font-title text-6xl text-white">Demo</h1>
       <div className="m-4 flex justify-start">
         {/* <button
@@ -136,7 +137,7 @@ function Demo() {
           <Button onClick={() => setIsModalOpen(true)}>Add Entry</Button>
         </div>
       </div>
-      <div className="m-4 grid grid-cols-1 gap-4 bg-customRed bg-opacity-70 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="m-4 grid grid-cols-1 gap-4 bg-customRed/70 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {demoEntries.map((memory) => (
           <Memory memory={memory} key={memory.id} />
         ))}

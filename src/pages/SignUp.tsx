@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "../components/Button";
 
 export default function SignUp() {
@@ -19,7 +20,7 @@ export default function SignUp() {
         </span>
       </div>
       <div className="p-4 text-center">
-        <Button>Register</Button>
+        <Button onClick={() => "nothing"}>Register</Button>
       </div>
     </form>
   );

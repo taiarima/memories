@@ -1,4 +1,6 @@
+import React from "react";
 import { useQuery } from "react-query";
+import { fetchMemories } from "../api/index.js";
 
 export default function UserMemories() {
   const { data: memories, isLoading } = useQuery({
