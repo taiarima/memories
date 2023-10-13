@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export default function LoadingScreen() {
   return (
-    <div className="flex h-[90vh] items-center justify-center overflow-hidden">
+    <div className="mx-auto flex h-[90vh] items-center justify-center overflow-hidden">
       <div
         style={{
           borderTopColor: "#3498db",

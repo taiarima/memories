@@ -4,6 +4,13 @@ import AddMemModal from "../components/AddMemModal";
 import Button from "../components/Button";
 import { useState } from "react";
 
+type Memory = {
+  id: number;
+  categoryEmoji: string;
+  entryText: string;
+  date: string;
+};
+
 function Demo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -118,7 +125,7 @@ function Demo() {
     setIsModalOpen(false);
   };
 
-  function handleAddMemory(memory) {
+  function handleAddMemory(memory: Memory) {
     memory.id = demoEntries.length + 1;
     setDemoEntries((entries) => [...entries, memory]);
   }
