@@ -1,32 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import Button from "./Button";
+import { categories } from "../constants/categories";
 
-const categories = [
-  "🏋️ Fitness",
-  "🎵 Music",
-  "🍔 Food",
-  "🌅 Scenery",
-  "📖 Reading",
-  "🚴 Cycling",
-  "🎥 Movies",
-  "🚶 Walking",
-  "🏞️ Beach",
-  "🎨 Art/Creativity",
-  "🐶 Animals",
-  "🍕 Pizza",
-  "🌌 Drive",
-  "🎤 Singing",
-  "🌺 Natural Beauty",
-  "🎁 Gift",
-  "🪅 Party",
-  "🍹 Drinks",
-  "🛒 Shopping",
-  "🎮 Gaming",
-  "📊 Productivity",
-  "🙏 Gratitude",
-  "🗣️ Socializing",
-];
+type Event = React.ChangeEvent<HTMLInputElement>;
 
 type Props = {
   closeModal: () => void;
@@ -38,13 +15,13 @@ function AddMemModal({ closeModal, handleAddMemory }: Props) {
   const [category, setCategory] = useState(categories[0]);
   const [date, setDate] = useState(new Date().toISOString().substr(0, 10));
 
-  const handleTextChange = (e) => {
+  const handleTextChange = (e: Event) => {
     if (e.target.value.length <= 200) {
       setText(e.target.value);
     }
   };
 
-  const handleBackgroundClick = (e) => {
+  const handleBackgroundClick = (e: Event) => {
     if (e.target === e.currentTarget) {
       closeModal();
     }

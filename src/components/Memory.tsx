@@ -1,14 +1,7 @@
 import React from "react";
+import { MemoryType } from "../lib/types";
 
-type Props = {
-  memory: {
-    categoryEmoji: string;
-    entryText: string;
-    date: string;
-  };
-};
-
-export default function Memory({ memory }: Props) {
+export default function Memory({ memory }: MemoryType) {
   return (
     <div className="m-4 flex cursor-pointer flex-col justify-between border border-l-customCream bg-customTeal p-2 text-center font-title">
       <span className="m-2 text-2xl">{memory.categoryEmoji}</span>

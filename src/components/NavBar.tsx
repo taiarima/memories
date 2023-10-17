@@ -1,8 +1,15 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 export default function NavBar() {
-  return (
+  const screenBigEnough = useMediaQuery("(min-width: 1135px)");
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  return screenBigEnough ? (
     <nav className="flex justify-between overflow-clip bg-customGray font-title text-xl text-white">
       <ul className="ml-40 flex space-x-12">
         <Link className="" to="/">
@@ -26,6 +33,31 @@ export default function NavBar() {
           <li>Log in</li>
         </Link>
       </ul>
+    </nav>
+  ) : (
+    <nav className="relative flex items-center justify-between bg-customGray font-title text-white">
+      <Link to="/">
+        <div className="ml-20 p-4 text-xl">Nano Journal</div>
+      </Link>
+      <button
+        onClick={toggleDropdown}
+        className="rounded-md p-4 text-xl text-white"
+      >
+        ☰
+      </button>
+      {isDropdownOpen && (
+        <ul className="absolute right-0 top-full z-30 flex w-48 flex-col bg-customGray text-white">
+          <Link to="/about" onClick={toggleDropdown}>
+            <li>About</li>
+          </Link>
+          <Link to="/contact" onClick={toggleDropdown}>
+            <li>Contact</li>
+          </Link>
+          <Link to="/demo" onClick={toggleDropdown}>
+            <li>Demo</li>
+          </Link>
+        </ul>
+      )}
     </nav>
   );
 }
