@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "../components/Button";
 import createUser from "../lib/createUser";
 import { LOGIN_STATUS } from "../lib/validateLogin";
+import { useNavigate } from "react-router-dom";
+import SuccessMessage from "../components/SuccessMessage";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -9,6 +11,9 @@ export default function SignUp() {
   const [isChecked, setIsChecked] = useState(false);
   const [error, setError] = useState("");
   const [wiggle, setWiggle] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  let navigate = useNavigate();
 
   function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,7 +31,8 @@ export default function SignUp() {
     switch (result.status) {
       case LOGIN_STATUS.SUCCESS:
         setError("");
-        
+        setShowSuccess(true);
+        setTimeout(() => navigate("/memories"), 2000);
       case LOGIN_STATUS.INVALID_USER:
         setError(
           "An account has already been registered with this username. Please choose another username or sign in with existing account.",
@@ -46,52 +52,55 @@ export default function SignUp() {
   }
 
   return (
-    <form className="mx-auto my-24 flex w-fit flex-col space-y-8 rounded-xl border-4 border-customYellow bg-customTeal p-8 font-title">
-      <h1 className="text-center text-4xl text-white">Sign up</h1>
-      <p className="my-4 max-w-lg text-center">
-        ❗DISCLAIMER: This is a demo application. Data will only be stored in
-        local storage. Do NOT enter any sensitive information.
-      </p>
-      <div className="mx-auto flex flex-col space-y-4 text-xl">
-        <span className="flex flex-row items-center space-x-2">
-          <label className="flex-1">Create username: </label>
-          <input
-            className="flex-1 rounded p-2"
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </span>
-        <span className="flex flex-row items-center space-x-2">
-          <label className="flex-1">Create password: </label>
-          <input
-            className="flex-1 rounded p-2"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </span>
-      </div>
+    <>
+      {showSuccess && <SuccessMessage message="Account Successfully Created" />}
+      <form className="mx-auto my-24 flex w-fit flex-col space-y-8 rounded-xl border-4 border-customYellow bg-customTeal p-8 font-title">
+        <h1 className="text-center text-4xl text-white">Sign up</h1>
+        <p className="my-4 max-w-lg text-center">
+          ❗DISCLAIMER: This is a demo application. Data will only be stored in
+          local storage. Do NOT enter any sensitive information.
+        </p>
+        <div className="mx-auto flex flex-col space-y-4 text-xl">
+          <span className="flex flex-row items-center space-x-2">
+            <label className="flex-1">Create username: </label>
+            <input
+              className="flex-1 rounded p-2"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </span>
+          <span className="flex flex-row items-center space-x-2">
+            <label className="flex-1">Create password: </label>
+            <input
+              className="flex-1 rounded p-2"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </span>
+        </div>
 
-      <label className="flex items-center space-x-4">
-        <input
-          type="checkbox"
-          onChange={() => setIsChecked(!isChecked)}
-          checked={isChecked}
-        />
-        <span className="ml-2 max-w-lg">
-          By clicking here, I acknowledge that this is a demo application and
-          all data will only be stored on my local machine.
-        </span>
-      </label>
+        <label className="flex items-center space-x-4">
+          <input
+            type="checkbox"
+            onChange={() => setIsChecked(!isChecked)}
+            checked={isChecked}
+          />
+          <span className="ml-2 max-w-lg">
+            By clicking here, I acknowledge that this is a demo application and
+            all data will only be stored on my local machine.
+          </span>
+        </label>
 
-      <div
-        className={`${
-          wiggle && "animatecss animatecss-headShake"
-        } p-4 text-center`}
-      >
-        <Button onClick={handleRegister}>Register</Button>
-      </div>
-    </form>
+        <div
+          className={`${
+            wiggle && "animatecss animatecss-headShake"
+          } p-4 text-center`}
+        >
+          <Button onClick={handleRegister}>Register</Button>
+        </div>
+      </form>
+    </>
   );
 }

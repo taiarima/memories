@@ -13,7 +13,7 @@ type Props = {
 function AddMemModal({ closeModal, handleAddMemory }: Props) {
   const [text, setText] = useState("");
   const [category, setCategory] = useState(categories[0]);
-  const [date, setDate] = useState(new Date().toISOString().substr(0, 10));
+  const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
 
   const handleTextChange = (e: Event) => {
     if (e.target.value.length <= 200) {
@@ -28,14 +28,12 @@ function AddMemModal({ closeModal, handleAddMemory }: Props) {
   };
 
   const handleSubmit = () => {
-    console.log(category.toString().type);
     const newMemory = {
       categoryEmoji: String.fromCodePoint(category.codePointAt(0)),
       entryText: text,
       date: date,
     };
     handleAddMemory(newMemory);
-    console.log("Submitting new memory");
     // show memory saved message
     closeModal();
   };
