@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
 import createUser from "../lib/createUser";
-import { LOGIN_STATUS } from "../lib/validateLogin";
+import { LOGIN_STATUS } from "../constants/loginStatus";
 import { useNavigate } from "react-router-dom";
 import SuccessMessage from "../components/SuccessMessage";
 
@@ -13,6 +13,14 @@ export default function SignUp() {
   const [wiggle, setWiggle] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  // make useEffect for wiggle
+
+  useEffect(() => {
+    if (!error) return;
+
+    setWiggle(true);
+    setTimeout(() => setWiggle(false), 500);
+  }, [error]);
   let navigate = useNavigate();
 
   function handleRegister(e: React.FormEvent<HTMLFormElement>) {
@@ -21,8 +29,8 @@ export default function SignUp() {
       setError(
         "You must agree to the conditions above before creating an account.",
       );
-      setWiggle(true);
-      setTimeout(() => setWiggle(false), 500);
+      // setWiggle(true);
+      // setTimeout(() => setWiggle(false), 500);
       return;
     }
 
@@ -33,15 +41,19 @@ export default function SignUp() {
         setError("");
         setShowSuccess(true);
         setTimeout(() => navigate("/memories"), 2000);
-      case LOGIN_STATUS.INVALID_USER:
-        setError(
-          "An account has already been registered with this username. Please choose another username or sign in with existing account.",
-        );
-        setTimeout(() => setError(""), 500);
         return;
       case LOGIN_STATUS.INVALID_PASSWORD:
         setError("Your password must contain at least 8 characters.");
-        setTimeout(() => setError(""), 500);
+        return;
+
+      case LOGIN_STATUS.INVALID_USER:
+        if (result.username.length < 8) {
+          setError("You must choose a username at least 8 characters long.");
+        } else {
+          setError(
+            "An account has already been registered with this username. Please choose another username or sign in with existing account.",
+          );
+        }
         return;
       default:
         setError(
@@ -55,7 +67,7 @@ export default function SignUp() {
     <>
       {showSuccess && <SuccessMessage message="Account Successfully Created" />}
       <form className="mx-auto my-24 flex w-fit flex-col space-y-8 rounded-xl border-4 border-customYellow bg-customTeal p-8 font-title">
-        <h1 className="text-center text-4xl text-white">Sign up</h1>
+        <h1 className="text-center text-4xl text-customGray">Sign up</h1>
         <p className="my-4 max-w-lg text-center">
           ❗DISCLAIMER: This is a demo application. Data will only be stored in
           local storage. Do NOT enter any sensitive information.
@@ -92,6 +104,9 @@ export default function SignUp() {
             all data will only be stored on my local machine.
           </span>
         </label>
+        {error && (
+          <p className="max-w-lg text-center text-red-600">*{error}*</p>
+        )}
 
         <div
           className={`${

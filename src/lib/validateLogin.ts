@@ -1,8 +1,4 @@
-export const LOGIN_STATUS = {
-  SUCCESS: "success",
-  INVALID_USER: "invalidUser",
-  INVALID_PASSWORD: "invalidPassword",
-};
+import { LOGIN_STATUS } from "../constants/loginStatus";
 
 export default function validateLogin(username: string, password: string) {
   // Check if username exists
