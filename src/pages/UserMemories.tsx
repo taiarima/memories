@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { fetchMemories } from "../api/index.js";
 import Memory from "../components/Memory.js";
 import LoadingScreen from "../components/LoadingScreen.js";
+import { userSelector } from "../slices/user";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function UserMemories() {
   const { data: memories, isLoading } = useQuery({
     queryFn: () => fetchMemories(),
     queryKey: ["memories"],
   });
+
+  const navigate = useNavigate();
+
+  const user = useSelector(userSelector);
+  useEffect(() => {
+    if (!user.loggedIn) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <div className="p-8 text-center text-6xl text-white">

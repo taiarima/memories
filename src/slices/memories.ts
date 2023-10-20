@@ -14,7 +14,7 @@ type State = {
   memories: Memory[];
 };
 
-export const initialState = {
+export const initialState: State = {
   loading: false,
   hasErrors: false,
   memories: [],

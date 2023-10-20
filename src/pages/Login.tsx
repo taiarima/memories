@@ -1,45 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../components/Button";
 import validateLogin from "../lib/validateLogin";
 import { LOGIN_STATUS } from "../constants/loginStatus";
 import SuccessMessage from "../components/SuccessMessage";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logIn } from "../slices/user";
 
 export default function Login() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [wiggle, setWiggle] = useState(false);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
-  function handleLogin() {
-    if (password.length < 8) {
-      setError("You must enter a valid password.");
-      return;
-    } else if (username.length < 8) {
-      setError("You must enter a valid username.");
-      return;
-    }
+  function triggerWiggle() {
+    setWiggle(true);
+    setTimeout(() => setWiggle(false), 500);
+  }
+
+  useEffect(() => {
+    if (!error) return;
+    triggerWiggle();
+  }, [error]);
+
+  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
     const result = validateLogin(username, password);
 
     switch (result.status) {
       case LOGIN_STATUS.INVALID_PASSWORD:
         setError("You have entered an invalid password.");
-        return;
+        break;
       case LOGIN_STATUS.INVALID_USER:
         setError("The username you have entered does not exist.");
+        break;
       case LOGIN_STATUS.SUCCESS:
         setError("");
         setShowSuccess(true);
+        dispatch(logIn({ username: username }));
         setTimeout(() => navigate("/memories"), 2000);
-        return;
+        break;
       default:
         setError(
           "The application has run into an unknown error. Refresh the page and try again.",
         );
+    }
+    if (error) {
+      triggerWiggle();
     }
   }
 
@@ -69,7 +83,11 @@ export default function Login() {
         {error && (
           <p className="max-w-lg text-center text-red-600">*{error}*</p>
         )}
-        <div className="p-4 text-center">
+        <div
+          className={`${
+            wiggle && "animatecss animatecss-headShake"
+          } p-4 text-center`}
+        >
           <Button onClick={handleLogin}>Log in</Button>
         </div>
       </form>

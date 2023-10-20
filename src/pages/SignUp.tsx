@@ -13,7 +13,8 @@ export default function SignUp() {
   const [wiggle, setWiggle] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // make useEffect for wiggle
+  let navigate = useNavigate();
+
 
   useEffect(() => {
     if (!error) return;
@@ -21,7 +22,6 @@ export default function SignUp() {
     setWiggle(true);
     setTimeout(() => setWiggle(false), 500);
   }, [error]);
-  let navigate = useNavigate();
 
   function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,8 +29,6 @@ export default function SignUp() {
       setError(
         "You must agree to the conditions above before creating an account.",
       );
-      // setWiggle(true);
-      // setTimeout(() => setWiggle(false), 500);
       return;
     }
 
@@ -44,8 +42,7 @@ export default function SignUp() {
         return;
       case LOGIN_STATUS.INVALID_PASSWORD:
         setError("Your password must contain at least 8 characters.");
-        return;
-
+        break;
       case LOGIN_STATUS.INVALID_USER:
         if (result.username.length < 8) {
           setError("You must choose a username at least 8 characters long.");
@@ -54,13 +51,15 @@ export default function SignUp() {
             "An account has already been registered with this username. Please choose another username or sign in with existing account.",
           );
         }
-        return;
+        break;
       default:
         setError(
           "The application has encountered an error. Please refresh the page and try again.",
         );
-        return;
+        break;
     }
+    setWiggle(true);
+    setTimeout(() => setWiggle(false), 500);
   }
 
   return (

@@ -7,7 +7,7 @@ export default function createUser(username: string, password: string) {
 
   // Username already exists guard clause
   if (localStorage.getItem(`user_${username}`) !== null) {
-    return { status: LOGIN_STATUS.INVALID_PASSWORD, username: username };
+    return { status: LOGIN_STATUS.INVALID_USER, username: username };
   }
 
   // Password too short guard clause
