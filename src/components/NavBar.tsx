@@ -39,18 +39,28 @@ export default function NavBar() {
   return screenBigEnough ? (
     <nav className="flex justify-between overflow-clip bg-customGray font-title text-xl text-white">
       <ul className="ml-40 flex space-x-12">
-        <Link className="" to="/">
-          <li className="">Nano Journal</li>
-        </Link>
+        {user.loggedIn ? (
+          <Link className="" to="/memories">
+            <li>My Memories</li>
+          </Link>
+        ) : (
+          <Link className="" to="/">
+            <li className="">Nano Journal</li>
+          </Link>
+        )}
+
         <Link className="" to="/about">
           <li>About</li>
         </Link>
         <Link className="" to="/contact">
           <li>Contact</li>
         </Link>
-        <Link className="" to="/demo">
-          <li>Demo</li>
-        </Link>
+
+        {!user.loggedIn && (
+          <Link className="" to="/demo">
+            <li>Demo</li>
+          </Link>
+        )}
       </ul>
       {user.loggedIn ? (
         <Button onClick={logOutFunction}>Log out</Button>
@@ -78,21 +88,27 @@ export default function NavBar() {
       </button>
       {isDropdownOpen && (
         <ul className="navbar-dropdown absolute right-0 top-full z-30 flex w-48 flex-col border-2 border-r-customTeal border-t-customYellow bg-customGray text-white">
+          {user.loggedIn && (
+            <Link className="" to="/memories">
+              <li>My Memories</li>
+            </Link>
+          )}
           <Link to="/about" onClick={toggleDropdown}>
             <li>About</li>
           </Link>
           <Link to="/contact" onClick={toggleDropdown}>
             <li>Contact</li>
           </Link>
-          <Link to="/demo" onClick={toggleDropdown}>
-            <li>Demo</li>
-          </Link>
+
           {user.loggedIn ? (
             <li className="cursor-pointer" onClick={logOutFunction}>
               Log Out
             </li>
           ) : (
             <>
+              <Link to="/demo" onClick={toggleDropdown}>
+                <li>Demo</li>
+              </Link>
               <Link className="" to="/signup">
                 <li className="">Sign up</li>
               </Link>
